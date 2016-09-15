@@ -1,0 +1,580 @@
+{
+    "project": {},
+    "files": {
+        "src/TableEntry.js": {
+            "name": "src/TableEntry.js",
+            "modules": {
+                "UITable": 1
+            },
+            "classes": {
+                "entry": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/TablePreview.js": {
+            "name": "src/TablePreview.js",
+            "modules": {},
+            "classes": {
+                "preview": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/TableSchema.js": {
+            "name": "src/TableSchema.js",
+            "modules": {},
+            "classes": {
+                "schema": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "UITable": {
+            "name": "UITable",
+            "submodules": {},
+            "elements": {},
+            "classes": {
+                "entry": 1,
+                "preview": 1,
+                "schema": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "src/TableSchema.js",
+            "line": 1
+        }
+    },
+    "classes": {
+        "entry": {
+            "name": "entry",
+            "shortname": "entry",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "UITable",
+            "namespace": "",
+            "file": "src/TableEntry.js",
+            "line": 4,
+            "description": "Handle table data."
+        },
+        "preview": {
+            "name": "preview",
+            "shortname": "preview",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "UITable",
+            "namespace": "",
+            "file": "src/TablePreview.js",
+            "line": 4,
+            "description": "Handle table preview.\n\nテーブルのプレビュー機能を提供します。"
+        },
+        "schema": {
+            "name": "schema",
+            "shortname": "schema",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "UITable",
+            "namespace": "",
+            "file": "src/TableSchema.js",
+            "line": 1,
+            "description": "Handle table schema."
+        }
+    },
+    "elements": {},
+    "classitems": [
+        {
+            "file": "src/TableEntry.js",
+            "line": 10,
+            "description": "Target of processing.",
+            "itemtype": "property",
+            "name": "",
+            "type": "{Object}",
+            "class": "entry",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableEntry.js",
+            "line": 18,
+            "description": "Write content to input hidden value.",
+            "itemtype": "method",
+            "name": "save",
+            "access": "public",
+            "tagname": "",
+            "class": "entry",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableEntry.js",
+            "line": 44,
+            "description": "Read content from input hidden value.",
+            "itemtype": "method",
+            "name": "edit",
+            "access": "public",
+            "tagname": "",
+            "class": "entry",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TablePreview.js",
+            "line": 12,
+            "description": "Preview table.",
+            "itemtype": "method",
+            "name": "preview",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "props": [
+                        {
+                            "name": "rowsLength",
+                            "description": "Row length.",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "colsLength",
+                            "description": "column length.",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "data",
+                            "description": "Input data.",
+                            "type": "Array"
+                        },
+                        {
+                            "name": "th",
+                            "description": "TH/TD Flag. TH is true.",
+                            "type": "Array"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "Table markup.",
+                "type": "String"
+            },
+            "class": "preview",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TablePreview.js",
+            "line": 43,
+            "description": "Convert Line Break to br tag.",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Input data.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "XML|void|String|*"
+            },
+            "class": "preview",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 8,
+            "itemtype": "property",
+            "name": "contextColMenu",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 23,
+            "itemtype": "property",
+            "name": "contextRowMenu",
+            "access": "private",
+            "tagname": "",
+            "type": "{String}",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 39,
+            "description": "Make table schema.",
+            "itemtype": "method",
+            "name": "makeSchema",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "params",
+                    "description": "",
+                    "props": [
+                        {
+                            "name": "schema",
+                            "description": "jQuery object of that has it-table-schema class.",
+                            "type": "Object"
+                        },
+                        {
+                            "name": "rowsLength",
+                            "description": "Number of row.",
+                            "type": "Number"
+                        },
+                        {
+                            "name": "colsLength",
+                            "description": "Number of cols.",
+                            "type": "Number"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "jQuery object of that has it-table schema class.",
+                "type": "Object"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 88,
+            "description": "Set event handler that handle row and column.",
+            "itemtype": "method",
+            "name": "setHandler",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object that identifies target.",
+                    "type": "Object"
+                }
+            ],
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 100,
+            "description": "Set event handler that handle row.",
+            "itemtype": "method",
+            "name": "setRowHandler",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object that identifies target.",
+                    "type": "Object"
+                }
+            ],
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 114,
+            "description": "Set event Handler that handle column.",
+            "itemtype": "method",
+            "name": "setColHandler",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object that identifies target.",
+                    "type": "Object"
+                }
+            ],
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 128,
+            "description": "Show context menu.",
+            "itemtype": "method",
+            "name": "showContext",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 142,
+            "description": "Close context menu.",
+            "itemtype": "method",
+            "name": "closeContext",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 156,
+            "description": "Add row.",
+            "itemtype": "method",
+            "name": "addRow",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "false.",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 182,
+            "description": "Remove Row.",
+            "itemtype": "method",
+            "name": "removeRow",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 199,
+            "description": "Convert row to th.",
+            "itemtype": "method",
+            "name": "convertRowToTh",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 221,
+            "description": "Convert row to td.",
+            "itemtype": "method",
+            "name": "convertRowToTd",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 242,
+            "description": "Add column.",
+            "itemtype": "method",
+            "name": "addCol",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object of that has it-table-schema class.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 283,
+            "description": "Remove column.",
+            "itemtype": "method",
+            "name": "removeCol",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object of that has it-table-schema class.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 313,
+            "description": "Convert column to th.",
+            "itemtype": "method",
+            "name": "convertColToTh",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object of that has it-table-schema class.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 347,
+            "description": "Convert column to td.",
+            "itemtype": "method",
+            "name": "convertColToTd",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "schema",
+                    "description": "jQuery object of that has it-table-schema class.",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Function"
+            },
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 380,
+            "description": "Row length increment.",
+            "itemtype": "method",
+            "name": "incRowsLength",
+            "access": "private",
+            "tagname": "",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 395,
+            "description": "Row length decrement.",
+            "itemtype": "method",
+            "name": "decRowsLength",
+            "access": "private",
+            "tagname": "",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 410,
+            "description": "Column length increment.",
+            "itemtype": "method",
+            "name": "incColsLength",
+            "access": "private",
+            "tagname": "",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 425,
+            "description": "Column length decrement.",
+            "itemtype": "method",
+            "name": "decColsLength",
+            "access": "private",
+            "tagname": "",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 440,
+            "description": "Get index for parent element.",
+            "itemtype": "method",
+            "name": "getIndex",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "target",
+                    "description": "Child element.",
+                    "type": "JQuery"
+                },
+                {
+                    "name": "selector",
+                    "description": "css selector of Parent element.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "schema",
+            "module": "UITable"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/TablePreview.js:12"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/TablePreview.js:43"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/TableSchema.js:39"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/TableSchema.js:128"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " src/TableSchema.js:142"
+        },
+        {
+            "message": "Missing item type\nConvert Line Break to br tag.",
+            "line": " src/TablePreview.js:43"
+        }
+    ]
+}
