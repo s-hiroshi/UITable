@@ -4,8 +4,6 @@
 /**
  * Handle table preview.
  *
- * テーブルのプレビュー機能を提供します。
- *
  * @class preview
  */
 export default (function () {
@@ -44,7 +42,7 @@ export default (function () {
      * Convert Line Break to br tag.
      *
      * @param {String} data Input data.
-     * @returns {XML|void|String|*}
+     * @returns {String}
      */
     function filterBr( data ) {
         return data.replace( /\n/g, '<br>' );

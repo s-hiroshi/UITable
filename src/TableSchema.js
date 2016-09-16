@@ -197,7 +197,7 @@ export default (function () {
     }
 
     /**
-     * Convert row to th.
+     * Convert row to th (Table Header).
      *
      * @method convertRowToTh
      * @private
@@ -219,7 +219,7 @@ export default (function () {
     }
 
     /**
-     * Convert row to td.
+     * Convert row to td (Table Data.
      *
      * @method convertRowToTd
      * @private

@@ -81,8 +81,6 @@ Object.defineProperty(exports, "__esModule", {
 /**
  * Handle table preview.
  *
- * テーブルのプレビュー機能を提供します。
- *
  * @class preview
  */
 exports.default = function () {
@@ -121,7 +119,7 @@ exports.default = function () {
      * Convert Line Break to br tag.
      *
      * @param {String} data Input data.
-     * @returns {XML|void|String|*}
+     * @returns {String}
      */
     function filterBr(data) {
         return data.replace(/\n/g, '<br>');
@@ -316,7 +314,7 @@ exports.default = function () {
     }
 
     /**
-     * Convert row to th.
+     * Convert row to th (Table Header).
      *
      * @method convertRowToTh
      * @private
@@ -337,7 +335,7 @@ exports.default = function () {
     }
 
     /**
-     * Convert row to td.
+     * Convert row to td (Table Data.
      *
      * @method convertRowToTd
      * @private
