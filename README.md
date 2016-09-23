@@ -23,8 +23,8 @@ Please look at [manual](./manual/manual.md) and examples/index.html.
 
 You install npm packages topmost project directory.
 
-* 1. Install Babel, Browserify in order to compile ES 2015 and use ES Modules.
-* 2. Install Mocha, etc in order to Unit Test.
+1. Install Babel, Browserify in order to compile ES2015 and use ES Modules.
+2. Install Mocha, etc in order to Unit Test.
 
 
 ```
@@ -32,7 +32,7 @@ $ cd /path/to/project
 $ npm install
 ```
 
-You watch src directory in order to compile ES 2015 by Babel and Browserify.
+You watch src directory in order to compile ES2015 by Babel and Browserify.
 
     $ npm run watch
 

@@ -101,7 +101,7 @@ exports.default = function () {
         var th = params.th;
         var rowsLength = params.rowsLength;
         var colsLength = params.colsLength;
-        var previewTable = $('<table class="preview-table table">');
+        var previewTable = $('<table class="preview-table">');
         for (var i = 0; i < rowsLength; i++) {
             var row = $('<tr>').appendTo(previewTable);
             for (var j = 0; j < colsLength; j++) {

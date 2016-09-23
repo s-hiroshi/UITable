@@ -24,7 +24,7 @@ export default (function () {
         const th = params.th;
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
-        const previewTable = $( '<table class="preview-table table">' );
+        const previewTable = $( '<table class="preview-table">' );
         for ( var i = 0; i < rowsLength; i++ ) {
             let row = $( '<tr>' ).appendTo( previewTable );
             for ( var j = 0; j < colsLength; j++ ) {
