@@ -36,7 +36,7 @@ You watch src directory in order to compile ES2015 by Babel and Browserify.
 
     $ npm run watch
 
-You run tests.
+You can do tests.
 
     $npm run test
 
@@ -75,7 +75,7 @@ Generate JavaScript documentation(YUIDoc).
     $ cd /path/to/project
     $ npm run docs
 
-Unit test.
+Do unit test.
 
     $ cd /path/to/project
     $ npm run tests
