@@ -101,7 +101,7 @@ exports.default = function () {
         var th = params.th;
         var rowsLength = params.rowsLength;
         var colsLength = params.colsLength;
-        var previewTable = $('<table class="preview-table">');
+        var previewTable = $('<table class="it-table-preview">');
         for (var i = 0; i < rowsLength; i++) {
             var row = $('<tr>').appendTo(previewTable);
             for (var j = 0; j < colsLength; j++) {
@@ -637,7 +637,7 @@ btnPreview.on('click', function () {
     thData.each(function (i) {
         th[i] = $(this).val();
     });
-    var preview = $('.preview-table');
+    var preview = $('.it-table-preview');
     if (preview.children().length > 0) {
         preview.remove();
     }

@@ -56,7 +56,7 @@ btnPreview.on( 'click', function () {
     thData.each( function ( i ) {
         th[i] = $( this ).val();
     } );
-    let preview = $( '.preview-table' );
+    let preview = $( '.it-table-preview' );
     if ( preview.children().length > 0 ) {
         preview.remove();
     }
