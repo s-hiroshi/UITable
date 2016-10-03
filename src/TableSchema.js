@@ -71,7 +71,7 @@ export default (function () {
         const colsLength = params.colsLength;
         if ( !rowsLength > 0 || !colsLength > 0 ) {
             exception.output( {
-                message: '0以上の値を入力してください。',
+                message: 'Input th number greater than 0.',
                 type: 'alert'
             } );
             return false;
