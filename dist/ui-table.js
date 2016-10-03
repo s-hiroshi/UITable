@@ -9,6 +9,66 @@ Object.defineProperty(exports, "__esModule", {
  * @module UITable
  */
 /**
+ * Handle error, exception
+ *
+ * @class customException
+ */
+exports.default = function () {
+    var containerSelector = '.it-table-alert';
+
+    function getContainerSelector() {
+        return containerSelector;
+    }
+
+    function setContainerSelector(selector) {
+        containerSelector = selector;
+    }
+
+    /**
+     * Output error.
+     *
+     * @method output
+     * @param {Object} e Custom Error object.
+     * @param {String} e.message Error message.
+     * @param {String} e.type Error type.
+     */
+    function output(e) {
+        var container = $(containerSelector);
+        container.text(e.message);
+        container.addClass('bg-danger');
+        container.css({ 'display': 'block' });
+    }
+
+    /**
+     * Close output container
+     *
+     * @method close
+     * @return boolean
+     */
+    function close() {
+        $(this).parent().fadeOut('slow');
+        return false;
+    }
+
+    return {
+        getContainerSelector: getContainerSelector,
+        setContainerSelector: setContainerSelector,
+        output: output,
+        close: close
+    };
+}();
+
+},{}],2:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+/**
+ * @module UITable
+ */
+/**
  * Handle table data.
  *
  * @class entry
@@ -68,7 +128,7 @@ exports.default = function () {
     };
 }();
 
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -130,7 +190,7 @@ exports.default = function () {
     };
 }();
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -143,6 +203,24 @@ Object.defineProperty(exports, "__esModule", {
  * @class schema
  */
 exports.default = function () {
+
+    /**
+     * @property exception
+     * @public
+     * @type {object}
+     */
+    var exception = void 0;
+
+    /**
+     * Set error handle object.
+     * 
+     * @method setException
+     * @public
+     * @param {Object} ex
+     */
+    function setException(ex) {
+        exception = ex;
+    }
 
     /**
      * @property contextColMenu
@@ -172,6 +250,13 @@ exports.default = function () {
         var schema = params.schema;
         var rowsLength = params.rowsLength;
         var colsLength = params.colsLength;
+        if (!rowsLength > 0 || !colsLength > 0) {
+            exception.output({
+                message: 'Input th number greater than 0.',
+                type: 'alert'
+            });
+            return false;
+        }
 
         // Make row for adding col.
         var head = $('<div class="it-table-add-col-area">');
@@ -190,7 +275,7 @@ exports.default = function () {
                 if (j === 0) {
                     $(contextRowMenu).appendTo(row);
                 }
-                var entryMarkup = '<span class="btn btn-default it-table-entry">\n                                          Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>\n                                          <input type="hidden" name="content[]">\n                                          <input type="hidden" name="th[]">\n                                      </span>';
+                var entryMarkup = '<span class="btn btn-default it-table-entry">\n                                       Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>\n                                       <input type="hidden" name="content[]">\n                                       <input type="hidden" name="th[]">\n                                  </span>';
                 $(entryMarkup).appendTo(row);
             }
         }
@@ -250,6 +335,8 @@ exports.default = function () {
      * @returns {boolean}
      */
     function showContext() {
+        $('.it-table-context-menu').remove('it-table-display');
+        $('.it-table-context-menu').addClass('it-table-display-none');
         var context = $(this).next();
         context.removeClass('it-table-display-none');
         context.addClass('it-table-display');
@@ -380,7 +467,7 @@ exports.default = function () {
                         var addedCol = col.clone(true);
                         $('input[name="content[]"]', addedCol).val('');
                         $('input[name="th[]"]', addedCol).val('false');
-                        if (j > 0) {
+                        if (j > 0 && i !== 0) {
                             $('i', addedCol).removeClass('fa fa-pencil-square');
                             $('i', addedCol).addClass('fa fa-pencil-square-o');
                         }
@@ -570,11 +657,12 @@ exports.default = function () {
         makeSchema: makeSchema,
         showContext: showContext,
         closeContext: closeContext,
-        setHandler: setHandler
+        setHandler: setHandler,
+        setException: setException
     };
 }();
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _TableSchema = require('./TableSchema.js');
@@ -589,7 +677,13 @@ var _TablePreview = require('./TablePreview.js');
 
 var _TablePreview2 = _interopRequireDefault(_TablePreview);
 
+var _Exception = require('./Exception.js');
+
+var _Exception2 = _interopRequireDefault(_Exception);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_TableSchema2.default.setException(_Exception2.default);
 
 var table = $('.it-table');
 var schema = $('.it-table-schema');
@@ -600,7 +694,7 @@ var btnPreview = $('.it-table-toolbar-preview');
 
 // Make sure one dialog.
 if ($('#it-table-entry-dialog').length < 1) {
-    var editor = '<div id="it-table-entry-dialog" title="Edit data.">\n                    <div class="form-group">\n                            <textarea id="it-table-editor-content" class="form-control"></textarea>\n                        </div>\n                        <div>\n                            <button class="btn btn-default btn-block it-table-entry-save">Save Data</button>\n                        </div>\n                    </div>\n                    <!-- #it-table-entry-dialog -->';
+    var editor = '<div id="it-table-entry-dialog" title="Edit data.">\n                        <div class="form-group">\n                            <textarea id="it-table-editor-content" class="form-control"></textarea>\n                        </div>\n                        <div>\n                            <button class="btn btn-default btn-block it-table-entry-save">Save Data</button>\n                        </div>\n                    </div>\n                    <!-- #it-table-entry-dialog -->';
     $(editor).appendTo(table);
 }
 
@@ -616,12 +710,13 @@ cols.on('change', function () {
 // Make table schema.
 btnMaker.on('click', function () {
     $('.it-table-schema').empty();
-    _TableSchema2.default.makeSchema({
+    $('.it-table-alert').css({ 'display': 'none' });
+    var result = _TableSchema2.default.makeSchema({
         schema: schema,
         rowsLength: parseInt($('input[name="rowsLength"]').val(), 10),
         colsLength: parseInt($('input[name="colsLength"]').val(), 10)
     });
-    $(this).prop('disabled', true);
+    if (result !== false) $(this).prop('disabled', true);
     return false;
 });
 
@@ -656,8 +751,13 @@ $(document).on('click', '.it-table-show-context', _TableSchema2.default.showCont
 $(document).on('click', '.it-table-close-context', _TableSchema2.default.closeContext);
 $(document).on('click', '.it-table-entry', _TableEntry2.default.edit);
 $(document).on('click', '.it-table-entry-save', _TableEntry2.default.save);
+$(document).on('click', function () {
+    $('.it-table-context-menu').removeClass('it-table-display');
+    $('.it-table-context-menu').addClass('it-table-display-none');
+});
+
 if (schema.children().length > 0) {
     $(_TableSchema2.default.setHandler(schema));
 }
 
-},{"./TableEntry.js":1,"./TablePreview.js":2,"./TableSchema.js":3}]},{},[4]);
+},{"./Exception.js":1,"./TableEntry.js":2,"./TablePreview.js":3,"./TableSchema.js":4}]},{},[5]);

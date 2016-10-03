@@ -38,6 +38,7 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/customException.html">customException</a></li>
                                 <li><a href="../classes/entry.html">entry</a></li>
                                 <li><a href="../classes/preview.html">preview</a></li>
                                 <li><a href="../classes/schema.html">schema</a></li>
@@ -89,8 +90,6 @@
 /**
  * Handle table preview.
  *
- * テーブルのプレビュー機能を提供します。
- *
  * @class preview
  */
 export default (function () {
@@ -111,7 +110,7 @@ export default (function () {
         const th = params.th;
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
-        const previewTable = $( &#x27;&lt;table class=&quot;preview-table table&quot;&gt;&#x27; );
+        const previewTable = $( &#x27;&lt;table class=&quot;preview-table&quot;&gt;&#x27; );
         for ( var i = 0; i &lt; rowsLength; i++ ) {
             let row = $( &#x27;&lt;tr&gt;&#x27; ).appendTo( previewTable );
             for ( var j = 0; j &lt; colsLength; j++ ) {
@@ -129,7 +128,7 @@ export default (function () {
      * Convert Line Break to br tag.
      *
      * @param {String} data Input data.
-     * @returns {XML|void|String|*}
+     * @returns {String}
      */
     function filterBr( data ) {
         return data.replace( /\n/g, &#x27;&lt;br&gt;&#x27; );

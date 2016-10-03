@@ -6,6 +6,24 @@
 export default (function () {
 
     /**
+     * @property exception
+     * @public
+     * @type {object}
+     */
+    let exception;
+
+    /**
+     * Set error handle object.
+     * 
+     * @method setException
+     * @public
+     * @param {Object} ex
+     */
+    function setException(ex) {
+        exception = ex;
+    }
+
+    /**
      * @property contextColMenu
      * @private
      * @type {String}
@@ -51,6 +69,13 @@ export default (function () {
         let schema = params.schema;
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
+        if ( !rowsLength > 0 || !colsLength > 0 ) {
+            exception.output( {
+                message: 'Input th number greater than 0.',
+                type: 'alert'
+            } );
+            return false;
+        }
 
         // Make row for adding col.
         const head = $( '<div class="it-table-add-col-area">' );
@@ -70,10 +95,10 @@ export default (function () {
                     $( contextRowMenu ).appendTo( row );
                 }
                 var entryMarkup = `<span class="btn btn-default it-table-entry">
-                                          Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                          <input type="hidden" name="content[]">
-                                          <input type="hidden" name="th[]">
-                                      </span>`;
+                                       Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                       <input type="hidden" name="content[]">
+                                       <input type="hidden" name="th[]">
+                                  </span>`;
                 $( entryMarkup ).appendTo( row );
             }
         }
@@ -133,6 +158,8 @@ export default (function () {
      * @returns {boolean}
      */
     function showContext() {
+        $( '.it-table-context-menu' ).remove( 'it-table-display' );
+        $( '.it-table-context-menu' ).addClass( 'it-table-display-none' );
         const context = $( this ).next();
         context.removeClass( 'it-table-display-none' );
         context.addClass( 'it-table-display' );
@@ -264,7 +291,7 @@ export default (function () {
                         const addedCol = col.clone( true );
                         $( 'input[name="content[]"]', addedCol ).val( '' );
                         $( 'input[name="th[]"]', addedCol ).val( 'false' );
-                        if ( j > 0 ) {
+                        if ( j > 0 && i !== 0) {
                             $( 'i', addedCol ).removeClass( 'fa fa-pencil-square' );
                             $( 'i', addedCol ).addClass( 'fa fa-pencil-square-o' );
                         }
@@ -454,6 +481,7 @@ export default (function () {
         makeSchema: makeSchema,
         showContext: showContext,
         closeContext: closeContext,
-        setHandler: setHandler
+        setHandler: setHandler,
+        setException: setException
     };
 }());

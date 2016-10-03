@@ -1,6 +1,9 @@
 import tableSchema from './TableSchema.js';
-import tableEntry from './TableEntry.js'
-import tablePreview from './TablePreview.js'
+import tableEntry from './TableEntry.js';
+import tablePreview from './TablePreview.js';
+import customException from './Exception.js';
+
+tableSchema.setException( customException );
 
 const table = $( '.it-table' );
 const schema = $( '.it-table-schema' );
@@ -12,7 +15,7 @@ const btnPreview = $( '.it-table-toolbar-preview' );
 // Make sure one dialog.
 if ( $( '#it-table-entry-dialog' ).length < 1 ) {
     const editor = `<div id="it-table-entry-dialog" title="Edit data.">
-                    <div class="form-group">
+                        <div class="form-group">
                             <textarea id="it-table-editor-content" class="form-control"></textarea>
                         </div>
                         <div>
@@ -35,12 +38,14 @@ cols.on( 'change', function () {
 // Make table schema.
 btnMaker.on( 'click', function () {
     $( '.it-table-schema' ).empty();
-    tableSchema.makeSchema( {
+    $( '.it-table-alert' ).css( { 'display': 'none' } );
+    let result = tableSchema.makeSchema( {
         schema: schema,
         rowsLength: parseInt( $( 'input[name="rowsLength"]' ).val(), 10 ),
         colsLength: parseInt( $( 'input[name="colsLength"]' ).val(), 10 )
     } );
-    $(this).prop('disabled', true);
+    if ( result !== false )
+        $( this ).prop( 'disabled', true );
     return false;
 } );
 
@@ -75,6 +80,11 @@ $( document ).on( 'click', '.it-table-show-context', tableSchema.showContext );
 $( document ).on( 'click', '.it-table-close-context', tableSchema.closeContext );
 $( document ).on( 'click', '.it-table-entry', tableEntry.edit );
 $( document ).on( 'click', '.it-table-entry-save', tableEntry.save );
+$( document ).on( 'click', function () {
+    $( '.it-table-context-menu' ).removeClass( 'it-table-display' );
+    $( '.it-table-context-menu' ).addClass( 'it-table-display-none' );
+} );
+
 if ( schema.children().length > 0 ) {
     $( tableSchema.setHandler( schema ) );
 }
