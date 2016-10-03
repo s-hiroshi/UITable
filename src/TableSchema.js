@@ -6,6 +6,22 @@
 export default (function () {
 
     /**
+     * @property exception
+     * @public
+     * @type {object}
+     */
+    let exception;
+
+    /**
+     * Set error handle object.
+     * 
+     * @param {Object} ex
+     */
+    function setException(ex) {
+        exception = ex;
+    }
+
+    /**
      * @property contextColMenu
      * @private
      * @type {String}
@@ -51,6 +67,13 @@ export default (function () {
         let schema = params.schema;
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
+        if ( !rowsLength > 0 || !colsLength > 0 ) {
+            exception.output( {
+                message: '0以上の値を入力してください。',
+                type: 'alert'
+            } );
+            return false;
+        }
 
         // Make row for adding col.
         const head = $( '<div class="it-table-add-col-area">' );
@@ -70,10 +93,10 @@ export default (function () {
                     $( contextRowMenu ).appendTo( row );
                 }
                 var entryMarkup = `<span class="btn btn-default it-table-entry">
-                                          Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                          <input type="hidden" name="content[]">
-                                          <input type="hidden" name="th[]">
-                                      </span>`;
+                                       Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                       <input type="hidden" name="content[]">
+                                       <input type="hidden" name="th[]">
+                                  </span>`;
                 $( entryMarkup ).appendTo( row );
             }
         }
@@ -454,6 +477,7 @@ export default (function () {
         makeSchema: makeSchema,
         showContext: showContext,
         closeContext: closeContext,
-        setHandler: setHandler
+        setHandler: setHandler,
+        setException: setException
     };
 }());
