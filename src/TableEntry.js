@@ -37,7 +37,7 @@ export default (function () {
             $( 'i', content.parent() ).addClass( 'fa-pencil-square-o' );
         }
         content.val( data );
-        $( '#it-table-entry-dialog' ).dialog( 'destroy' );
+        $( '#it-table-entry-dialog' ).dialog( 'close' );
         return false;
     }
 
@@ -51,7 +51,7 @@ export default (function () {
         current = this;
         const content = $( 'input[name="content[]"]', this );
         $( '#it-table-editor-content' ).val( content.val() );
-        $( '#it-table-entry-dialog' ).dialog();
+        $( '#it-table-entry-dialog' ).dialog( { modal: true } );
         return false;
     }
 
