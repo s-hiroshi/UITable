@@ -80,6 +80,11 @@ $( document ).on( 'click', '.it-table-show-context', tableSchema.showContext );
 $( document ).on( 'click', '.it-table-close-context', tableSchema.closeContext );
 $( document ).on( 'click', '.it-table-entry', tableEntry.edit );
 $( document ).on( 'click', '.it-table-entry-save', tableEntry.save );
+$( document ).on( 'click', function () {
+    $( '.it-table-context-menu' ).removeClass( 'it-table-display' );
+    $( '.it-table-context-menu' ).addClass( 'it-table-display-none' );
+} );
+
 if ( schema.children().length > 0 ) {
     $( tableSchema.setHandler( schema ) );
 }

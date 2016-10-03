@@ -38,6 +38,7 @@
                 
                         <div id="api-tabview-panel">
                             <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/customException.html">customException</a></li>
                                 <li><a href="../classes/entry.html">entry</a></li>
                                 <li><a href="../classes/preview.html">preview</a></li>
                                 <li><a href="../classes/schema.html">schema</a></li>
@@ -91,6 +92,24 @@
 export default (function () {
 
     /**
+     * @property exception
+     * @public
+     * @type {object}
+     */
+    let exception;
+
+    /**
+     * Set error handle object.
+     * 
+     * @method setException
+     * @public
+     * @param {Object} ex
+     */
+    function setException(ex) {
+        exception = ex;
+    }
+
+    /**
      * @property contextColMenu
      * @private
      * @type {String}
@@ -136,6 +155,13 @@ export default (function () {
         let schema = params.schema;
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
+        if ( !rowsLength &gt; 0 || !colsLength &gt; 0 ) {
+            exception.output( {
+                message: &#x27;0以上の値を入力してください。&#x27;,
+                type: &#x27;alert&#x27;
+            } );
+            return false;
+        }
 
         // Make row for adding col.
         const head = $( &#x27;&lt;div class=&quot;it-table-add-col-area&quot;&gt;&#x27; );
@@ -155,10 +181,10 @@ export default (function () {
                     $( contextRowMenu ).appendTo( row );
                 }
                 var entryMarkup = &#x60;&lt;span class=&quot;btn btn-default it-table-entry&quot;&gt;
-                                          Edit &lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
-                                          &lt;input type=&quot;hidden&quot; name=&quot;content[]&quot;&gt;
-                                          &lt;input type=&quot;hidden&quot; name=&quot;th[]&quot;&gt;
-                                      &lt;/span&gt;&#x60;;
+                                       Edit &lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;
+                                       &lt;input type=&quot;hidden&quot; name=&quot;content[]&quot;&gt;
+                                       &lt;input type=&quot;hidden&quot; name=&quot;th[]&quot;&gt;
+                                  &lt;/span&gt;&#x60;;
                 $( entryMarkup ).appendTo( row );
             }
         }
@@ -218,6 +244,8 @@ export default (function () {
      * @returns {boolean}
      */
     function showContext() {
+        $( &#x27;.it-table-context-menu&#x27; ).remove( &#x27;it-table-display&#x27; );
+        $( &#x27;.it-table-context-menu&#x27; ).addClass( &#x27;it-table-display-none&#x27; );
         const context = $( this ).next();
         context.removeClass( &#x27;it-table-display-none&#x27; );
         context.addClass( &#x27;it-table-display&#x27; );
@@ -282,7 +310,7 @@ export default (function () {
     }
 
     /**
-     * Convert row to th.
+     * Convert row to th (Table Header).
      *
      * @method convertRowToTh
      * @private
@@ -304,7 +332,7 @@ export default (function () {
     }
 
     /**
-     * Convert row to td.
+     * Convert row to td (Table Data.
      *
      * @method convertRowToTd
      * @private
@@ -349,7 +377,7 @@ export default (function () {
                         const addedCol = col.clone( true );
                         $( &#x27;input[name=&quot;content[]&quot;]&#x27;, addedCol ).val( &#x27;&#x27; );
                         $( &#x27;input[name=&quot;th[]&quot;]&#x27;, addedCol ).val( &#x27;false&#x27; );
-                        if ( j &gt; 0 ) {
+                        if ( j &gt; 0 &amp;&amp; i !== 0) {
                             $( &#x27;i&#x27;, addedCol ).removeClass( &#x27;fa fa-pencil-square&#x27; );
                             $( &#x27;i&#x27;, addedCol ).addClass( &#x27;fa fa-pencil-square-o&#x27; );
                         }
@@ -539,7 +567,8 @@ export default (function () {
         makeSchema: makeSchema,
         showContext: showContext,
         closeContext: closeContext,
-        setHandler: setHandler
+        setHandler: setHandler,
+        setException: setException
     };
 }());
 

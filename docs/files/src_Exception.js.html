@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>entry</title>
+    <title>src/Exception.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -80,167 +80,64 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-<h1>entry Class</h1>
-<div class="box meta">
-
-
-        <div class="foundat">
-            Defined in: <a href="../files/src_TableEntry.js.html#l4"><code>src&#x2F;TableEntry.js:4</code></a>
-        </div>
-
-            Module: <a href="../modules/UITable.html">UITable</a>
-
-</div>
-
-
-<div class="box intro">
-    <p>Handle table data.</p>
-
-</div>
-
-
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
-    </ul>
-
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-
-                    <ul class="index-list methods">
-                            <li class="index-item method public">
-                                <a href="#method_edit">edit</a>
-
-                            </li>
-                            <li class="index-item method public">
-                                <a href="#method_save">save</a>
-
-                            </li>
-                    </ul>
-                </div>
-
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-
-                    <ul class="index-list properties">
-                            <li class="index-item property">
-                                <a href="#property_"></a>
-
-                            </li>
-                    </ul>
-                </div>
-
-
-        </div>
-
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-
-<div id="method_edit" class="method item public">
-    <h3 class="name"><code>edit</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-        <span class="flag public">public</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_TableEntry.js.html#l44"><code>src&#x2F;TableEntry.js:44</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Read content from input hidden value.</p>
-
-    </div>
-
-
-
-
-</div>
-<div id="method_save" class="method item public">
-    <h3 class="name"><code>save</code></h3>
-
-        <span class="paren">()</span>
-
-
-
-        <span class="flag public">public</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_TableEntry.js.html#l18"><code>src&#x2F;TableEntry.js:18</code></a>
-        </p>
-
-
-
-    </div>
-
-    <div class="description">
-        <p>Write content to input hidden value.</p>
-
-    </div>
-
-
-
-
-</div>
-            </div>
-
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-
-<div id="property_" class="property item">
-    <h3 class="name"><code></code></h3>
-    <span class="type">Object</span>
-
-
-
-
-
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/src_TableEntry.js.html#l10"><code>src&#x2F;TableEntry.js:10</code></a>
-        </p>
-
-
-    </div>
-
-    <div class="description">
-        <p>Target of processing.</p>
-
-    </div>
-
-
-
-</div>
-            </div>
-
-
-    </div>
+<h1 class="file-heading">File: src/Exception.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+/**
+ * @module UITable
+ */
+/**
+ * Handle error, exception
+ *
+ * @class customException
+ */
+export default (function () {
+    let containerSelector = &#x27;.it-table-alert&#x27;;
+
+    function getContainerSelector() {
+        return containerSelector;
+    }
+
+    function setContainerSelector( selector ) {
+        containerSelector = selector;
+    }
+
+    /**
+     * Output error.
+     *
+     * @method output
+     * @param {Object} e Custom Error object.
+     * @param {String} e.message Error message.
+     * @param {String} e.type Error type.
+     */
+    function output( e ) {
+        const container = $( containerSelector );
+        container.text( e.message );
+        container.addClass( &#x27;bg-danger&#x27; );
+        container.css( { &#x27;display&#x27;: &#x27;block&#x27; } );
+    }
+
+    /**
+     * Close output container
+     *
+     * @method close
+     * @return boolean
+     */
+    function close() {
+        $( this ).parent().fadeOut( &#x27;slow&#x27; );
+        return false;
+    }
+
+
+    return {
+        getContainerSelector: getContainerSelector,
+        setContainerSelector: setContainerSelector,
+        output: output,
+        close: close
+    }
+}());
+    </pre>
 </div>
                     </div>
                 </div>

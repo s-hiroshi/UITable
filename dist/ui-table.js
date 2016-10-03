@@ -214,6 +214,8 @@ exports.default = function () {
     /**
      * Set error handle object.
      * 
+     * @method setException
+     * @public
      * @param {Object} ex
      */
     function setException(ex) {
@@ -333,6 +335,8 @@ exports.default = function () {
      * @returns {boolean}
      */
     function showContext() {
+        $('.it-table-context-menu').remove('it-table-display');
+        $('.it-table-context-menu').addClass('it-table-display-none');
         var context = $(this).next();
         context.removeClass('it-table-display-none');
         context.addClass('it-table-display');
@@ -463,7 +467,7 @@ exports.default = function () {
                         var addedCol = col.clone(true);
                         $('input[name="content[]"]', addedCol).val('');
                         $('input[name="th[]"]', addedCol).val('false');
-                        if (j > 0) {
+                        if (j > 0 && i !== 0) {
                             $('i', addedCol).removeClass('fa fa-pencil-square');
                             $('i', addedCol).addClass('fa fa-pencil-square-o');
                         }
@@ -747,6 +751,11 @@ $(document).on('click', '.it-table-show-context', _TableSchema2.default.showCont
 $(document).on('click', '.it-table-close-context', _TableSchema2.default.closeContext);
 $(document).on('click', '.it-table-entry', _TableEntry2.default.edit);
 $(document).on('click', '.it-table-entry-save', _TableEntry2.default.save);
+$(document).on('click', function () {
+    $('.it-table-context-menu').removeClass('it-table-display');
+    $('.it-table-context-menu').addClass('it-table-display-none');
+});
+
 if (schema.children().length > 0) {
     $(_TableSchema2.default.setHandler(schema));
 }

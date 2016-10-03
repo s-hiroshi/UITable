@@ -1,11 +1,20 @@
 {
     "project": {},
     "files": {
-        "src/TableEntry.js": {
-            "name": "src/TableEntry.js",
+        "src/Exception.js": {
+            "name": "src/Exception.js",
             "modules": {
                 "UITable": 1
             },
+            "classes": {
+                "customException": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src/TableEntry.js": {
+            "name": "src/TableEntry.js",
+            "modules": {},
             "classes": {
                 "entry": 1
             },
@@ -37,6 +46,7 @@
             "submodules": {},
             "elements": {},
             "classes": {
+                "customException": 1,
                 "entry": 1,
                 "preview": 1,
                 "schema": 1
@@ -49,6 +59,20 @@
         }
     },
     "classes": {
+        "customException": {
+            "name": "customException",
+            "shortname": "customException",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "UITable",
+            "namespace": "",
+            "file": "src/Exception.js",
+            "line": 4,
+            "description": "Handle error, exception"
+        },
         "entry": {
             "name": "entry",
             "shortname": "entry",
@@ -75,7 +99,7 @@
             "namespace": "",
             "file": "src/TablePreview.js",
             "line": 4,
-            "description": "Handle table preview.\n\nテーブルのプレビュー機能を提供します。"
+            "description": "Handle table preview."
         },
         "schema": {
             "name": "schema",
@@ -94,6 +118,46 @@
     },
     "elements": {},
     "classitems": [
+        {
+            "file": "src/Exception.js",
+            "line": 20,
+            "description": "Output error.",
+            "itemtype": "method",
+            "name": "output",
+            "params": [
+                {
+                    "name": "e",
+                    "description": "Custom Error object.",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "message",
+                            "description": "Error message.",
+                            "type": "String"
+                        },
+                        {
+                            "name": "type",
+                            "description": "Error type.",
+                            "type": "String"
+                        }
+                    ]
+                }
+            ],
+            "class": "customException",
+            "module": "UITable"
+        },
+        {
+            "file": "src/Exception.js",
+            "line": 35,
+            "description": "Close output container",
+            "itemtype": "method",
+            "name": "close",
+            "return": {
+                "description": "boolean"
+            },
+            "class": "customException",
+            "module": "UITable"
+        },
         {
             "file": "src/TableEntry.js",
             "line": 10,
@@ -128,7 +192,7 @@
         },
         {
             "file": "src/TablePreview.js",
-            "line": 12,
+            "line": 10,
             "description": "Preview table.",
             "itemtype": "method",
             "name": "preview",
@@ -171,7 +235,7 @@
         },
         {
             "file": "src/TablePreview.js",
-            "line": 43,
+            "line": 41,
             "description": "Convert Line Break to br tag.",
             "params": [
                 {
@@ -182,7 +246,7 @@
             ],
             "return": {
                 "description": "",
-                "type": "XML|void|String|*"
+                "type": "String"
             },
             "class": "preview",
             "module": "UITable"
@@ -190,6 +254,35 @@
         {
             "file": "src/TableSchema.js",
             "line": 8,
+            "itemtype": "property",
+            "name": "exception",
+            "access": "public",
+            "tagname": "",
+            "type": "{object}",
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 15,
+            "description": "Set error handle object.",
+            "itemtype": "method",
+            "name": "setException",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "ex",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "schema",
+            "module": "UITable"
+        },
+        {
+            "file": "src/TableSchema.js",
+            "line": 26,
             "itemtype": "property",
             "name": "contextColMenu",
             "access": "private",
@@ -200,7 +293,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 23,
+            "line": 41,
             "itemtype": "property",
             "name": "contextRowMenu",
             "access": "private",
@@ -211,7 +304,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 39,
+            "line": 57,
             "description": "Make table schema.",
             "itemtype": "method",
             "name": "makeSchema",
@@ -249,7 +342,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 88,
+            "line": 113,
             "description": "Set event handler that handle row and column.",
             "itemtype": "method",
             "name": "setHandler",
@@ -267,7 +360,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 100,
+            "line": 125,
             "description": "Set event handler that handle row.",
             "itemtype": "method",
             "name": "setRowHandler",
@@ -285,7 +378,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 114,
+            "line": 139,
             "description": "Set event Handler that handle column.",
             "itemtype": "method",
             "name": "setColHandler",
@@ -303,7 +396,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 128,
+            "line": 153,
             "description": "Show context menu.",
             "itemtype": "method",
             "name": "showContext",
@@ -318,7 +411,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 142,
+            "line": 169,
             "description": "Close context menu.",
             "itemtype": "method",
             "name": "closeContext",
@@ -333,7 +426,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 156,
+            "line": 183,
             "description": "Add row.",
             "itemtype": "method",
             "name": "addRow",
@@ -348,7 +441,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 182,
+            "line": 209,
             "description": "Remove Row.",
             "itemtype": "method",
             "name": "removeRow",
@@ -363,8 +456,8 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 199,
-            "description": "Convert row to th.",
+            "line": 226,
+            "description": "Convert row to th (Table Header).",
             "itemtype": "method",
             "name": "convertRowToTh",
             "access": "private",
@@ -378,8 +471,8 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 221,
-            "description": "Convert row to td.",
+            "line": 248,
+            "description": "Convert row to td (Table Data.",
             "itemtype": "method",
             "name": "convertRowToTd",
             "access": "private",
@@ -393,7 +486,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 242,
+            "line": 269,
             "description": "Add column.",
             "itemtype": "method",
             "name": "addCol",
@@ -415,7 +508,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 283,
+            "line": 310,
             "description": "Remove column.",
             "itemtype": "method",
             "name": "removeCol",
@@ -437,7 +530,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 313,
+            "line": 340,
             "description": "Convert column to th.",
             "itemtype": "method",
             "name": "convertColToTh",
@@ -459,7 +552,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 347,
+            "line": 374,
             "description": "Convert column to td.",
             "itemtype": "method",
             "name": "convertColToTd",
@@ -481,7 +574,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 380,
+            "line": 407,
             "description": "Row length increment.",
             "itemtype": "method",
             "name": "incRowsLength",
@@ -492,7 +585,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 395,
+            "line": 422,
             "description": "Row length decrement.",
             "itemtype": "method",
             "name": "decRowsLength",
@@ -503,7 +596,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 410,
+            "line": 437,
             "description": "Column length increment.",
             "itemtype": "method",
             "name": "incColsLength",
@@ -514,7 +607,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 425,
+            "line": 452,
             "description": "Column length decrement.",
             "itemtype": "method",
             "name": "decColsLength",
@@ -525,7 +618,7 @@
         },
         {
             "file": "src/TableSchema.js",
-            "line": 440,
+            "line": 467,
             "description": "Get index for parent element.",
             "itemtype": "method",
             "name": "getIndex",
@@ -554,27 +647,27 @@
     "warnings": [
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/TablePreview.js:12"
+            "line": " src/TablePreview.js:10"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/TablePreview.js:43"
+            "line": " src/TablePreview.js:41"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/TableSchema.js:39"
+            "line": " src/TableSchema.js:57"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/TableSchema.js:128"
+            "line": " src/TableSchema.js:153"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src/TableSchema.js:142"
+            "line": " src/TableSchema.js:169"
         },
         {
             "message": "Missing item type\nConvert Line Break to br tag.",
-            "line": " src/TablePreview.js:43"
+            "line": " src/TablePreview.js:41"
         }
     ]
 }
