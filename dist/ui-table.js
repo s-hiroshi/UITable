@@ -104,7 +104,7 @@ exports.default = function () {
             $('i', content.parent()).addClass('fa-pencil-square-o');
         }
         content.val(data);
-        $('#it-table-entry-dialog').dialog('close');
+        $('#it-table-entry-dialog').hide();
         return false;
     }
 
@@ -118,6 +118,7 @@ exports.default = function () {
         current = this;
         var content = $('input[name="content[]"]', this);
         $('#it-table-editor-content').val(content.val());
+        $('#it-table-entry-dialog').show();
         return false;
     }
 
