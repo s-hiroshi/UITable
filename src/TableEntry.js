@@ -51,6 +51,7 @@ export default (function () {
         current = this;
         const content = $( 'input[name="content[]"]', this );
         $( '#it-table-editor-content' ).val( content.val() );
+        $( '#it-table-entry-dialog' ).dialog();
         return false;
     }
 
