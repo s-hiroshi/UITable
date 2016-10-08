@@ -2,60 +2,55 @@
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 /**
  * @module UITable
  */
 /**
- * Handle error, exception
+ * Handle error, exception, notice
  *
- * @class customException
+ * @class alert
  */
 exports.default = function () {
-    var containerSelector = '.it-table-alert';
+  /**
+   * Display error message to container element.
+   *
+   * @method message
+   * @param {Object} e Custom error object.
+   * @param {String} e.container Error container.
+   * @param {String} e.message Error message.
+   */
+  function message(e) {
+    var container = $(e.container);
+    container.text(e.message);
+    container.addClass('bg-danger');
+    container.css({ 'display': 'block' });
+  }
 
-    function getContainerSelector() {
-        return containerSelector;
-    }
+  /**
+   * Display confirm dialog.
+   */
+  function confirm(e) {
+    windows.confirm(e.message);
+  }
 
-    function setContainerSelector(selector) {
-        containerSelector = selector;
-    }
+  /**
+   * Close alert container
+   *
+   * @method close
+   * @return boolean
+   */
+  function close() {
+    $(this).parent().fadeOut('slow');
+    return false;
+  }
 
-    /**
-     * Output error.
-     *
-     * @method output
-     * @param {Object} e Custom Error object.
-     * @param {String} e.message Error message.
-     * @param {String} e.type Error type.
-     */
-    function output(e) {
-        var container = $(containerSelector);
-        container.text(e.message);
-        container.addClass('bg-danger');
-        container.css({ 'display': 'block' });
-    }
-
-    /**
-     * Close output container
-     *
-     * @method close
-     * @return boolean
-     */
-    function close() {
-        $(this).parent().fadeOut('slow');
-        return false;
-    }
-
-    return {
-        getContainerSelector: getContainerSelector,
-        setContainerSelector: setContainerSelector,
-        output: output,
-        close: close
-    };
+  return {
+    message: message,
+    close: close
+  };
 }();
 
 },{}],2:[function(require,module,exports){
@@ -205,21 +200,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function () {
 
     /**
-     * @property exception
+     * @property alert
      * @public
      * @type {object}
      */
-    var exception = void 0;
+    var alert = void 0;
 
     /**
      * Set error handle object.
-     * 
-     * @method setException
+     *
+     * @method setAlert
      * @public
-     * @param {Object} ex
+     * @param {Object} a Alert object.
      */
-    function setException(ex) {
-        exception = ex;
+    function setAlert(a) {
+        alert = a;
     }
 
     /**
@@ -251,9 +246,9 @@ exports.default = function () {
         var rowsLength = params.rowsLength;
         var colsLength = params.colsLength;
         if (!rowsLength > 0 || !colsLength > 0) {
-            exception.output({
-                message: 'Input th number greater than 0.',
-                type: 'alert'
+            alert.message({
+                'message': 'Input th number greater than 0.',
+                'container': '.it-table-alert'
             });
             return false;
         }
@@ -658,7 +653,7 @@ exports.default = function () {
         showContext: showContext,
         closeContext: closeContext,
         setHandler: setHandler,
-        setException: setException
+        setAlert: setAlert
     };
 }();
 
@@ -677,13 +672,13 @@ var _TablePreview = require('./TablePreview.js');
 
 var _TablePreview2 = _interopRequireDefault(_TablePreview);
 
-var _Exception = require('./Exception.js');
+var _TableAlert = require('./TableAlert.js');
 
-var _Exception2 = _interopRequireDefault(_Exception);
+var _TableAlert2 = _interopRequireDefault(_TableAlert);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_TableSchema2.default.setException(_Exception2.default);
+_TableSchema2.default.setAlert(_TableAlert2.default);
 
 var table = $('.it-table');
 var schema = $('.it-table-schema');
@@ -716,7 +711,9 @@ btnMaker.on('click', function () {
         rowsLength: parseInt($('input[name="rowsLength"]').val(), 10),
         colsLength: parseInt($('input[name="colsLength"]').val(), 10)
     });
-    if (result !== false) $(this).prop('disabled', true);
+    if (result !== false) {
+        $(this).prop('disabled', true);
+    }
     return false;
 });
 
@@ -760,4 +757,4 @@ if (schema.children().length > 0) {
     $(_TableSchema2.default.setHandler(schema));
 }
 
-},{"./Exception.js":1,"./TableEntry.js":2,"./TablePreview.js":3,"./TableSchema.js":4}]},{},[5]);
+},{"./TableAlert.js":1,"./TableEntry.js":2,"./TablePreview.js":3,"./TableSchema.js":4}]},{},[5]);

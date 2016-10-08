@@ -6,21 +6,21 @@
 export default (function () {
 
     /**
-     * @property exception
+     * @property alert
      * @public
      * @type {object}
      */
-    let exception;
+    let alert;
 
     /**
      * Set error handle object.
-     * 
-     * @method setException
+     *
+     * @method setAlert
      * @public
-     * @param {Object} ex
+     * @param {Object} a Alert object.
      */
-    function setException(ex) {
-        exception = ex;
+    function setAlert( a ) {
+        alert = a;
     }
 
     /**
@@ -70,9 +70,9 @@ export default (function () {
         const rowsLength = params.rowsLength;
         const colsLength = params.colsLength;
         if ( !rowsLength > 0 || !colsLength > 0 ) {
-            exception.output( {
-                message: 'Input th number greater than 0.',
-                type: 'alert'
+            alert.message( {
+                'message': 'Input th number greater than 0.',
+                'container': '.it-table-alert'
             } );
             return false;
         }
@@ -482,6 +482,6 @@ export default (function () {
         showContext: showContext,
         closeContext: closeContext,
         setHandler: setHandler,
-        setException: setException
+        setAlert: setAlert
     };
 }());

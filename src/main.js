@@ -1,9 +1,9 @@
 import tableSchema from './TableSchema.js';
 import tableEntry from './TableEntry.js';
 import tablePreview from './TablePreview.js';
-import customException from './Exception.js';
+import tableAlert from './TableAlert.js';
 
-tableSchema.setException( customException );
+tableSchema.setAlert(tableAlert);
 
 const table = $( '.it-table' );
 const schema = $( '.it-table-schema' );
@@ -44,8 +44,9 @@ btnMaker.on( 'click', function () {
         rowsLength: parseInt( $( 'input[name="rowsLength"]' ).val(), 10 ),
         colsLength: parseInt( $( 'input[name="colsLength"]' ).val(), 10 )
     } );
-    if ( result !== false )
+    if ( result !== false ) {
         $( this ).prop( 'disabled', true );
+    }
     return false;
 } );
 
