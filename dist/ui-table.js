@@ -65,7 +65,7 @@ Object.defineProperty(exports, "__esModule", {
  * @module UITable
  */
 /**
- * Handle table data.
+ * Handle entry data.
  *
  * @class entry
  */
@@ -101,18 +101,19 @@ exports.default = function () {
         }
         content.val(data);
         $('#it-table-entry-dialog').hide();
-        content.parent().css({ 'background': 'transparent' });
         return false;
     }
 
     /**
-     * Read content from input hidden value.
+     * Display area to edit cell data.
+     *
+     * Read content to area from input hidden value.
      *
      * @method edit
      * @public
      */
     function edit() {
-        $(this).css({ 'background': '#FFBF6D' });
+        $(this).css({ 'background': '#3276b1' });
         current = this;
         var content = $('input[name="content[]"]', this);
         $('#it-table-editor-content').val(content.val());
@@ -120,9 +121,19 @@ exports.default = function () {
         return false;
     }
 
+    /*
+     * Auto save when dialog is close by Save button
+     */
+    function autoSave() {
+        var data = $('#it-table-editor-content').val();
+        var content = $(current).children('input[name="content[]"]');
+        content.val(data);
+    }
+
     return {
         edit: edit,
-        save: save
+        save: save,
+        autoSave: autoSave
     };
 }();
 
@@ -768,6 +779,9 @@ $(document).on('click', '.it-table-entry-save', _TableEntry2.default.save);
 $(document).on('click', function () {
     $('.it-table-context-menu').removeClass('it-table-display');
     $('.it-table-context-menu').addClass('it-table-display-none');
+});
+$('#ccm-form-submit-button').on('click', function () {
+    _TableEntry2.default.autoSave();
 });
 
 if (schema.children().length > 0) {

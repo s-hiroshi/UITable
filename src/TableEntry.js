@@ -2,7 +2,7 @@
  * @module UITable
  */
 /**
- * Handle table data.
+ * Handle entry data.
  *
  * @class entry
  */
@@ -38,18 +38,19 @@ export default (function () {
         }
         content.val( data );
         $( '#it-table-entry-dialog' ).hide();
-        content.parent().css( { 'background': 'transparent' } );
         return false;
     }
 
     /**
-     * Read content from input hidden value.
+     * Display area to edit cell data.
+     *
+     * Read content to area from input hidden value.
      *
      * @method edit
      * @public
      */
     function edit() {
-        $( this ).css( { 'background': '#FFBF6D' } );
+        $( this ).css( { 'background': '#3276b1' } );
         current = this;
         const content = $( 'input[name="content[]"]', this );
         $( '#it-table-editor-content' ).val( content.val() );
@@ -57,9 +58,19 @@ export default (function () {
         return false;
     }
 
+    /*
+     * Auto save when dialog is close by Save button
+     */
+    function autoSave() {
+        const data = $( '#it-table-editor-content' ).val();
+        const content = $( current ).children( 'input[name="content[]"]' );
+        content.val( data )
+    }
+
     return {
         edit: edit,
-        save: save
+        save: save,
+        autoSave: autoSave
     };
 }());
 

@@ -85,6 +85,9 @@ $( document ).on( 'click', function () {
     $( '.it-table-context-menu' ).removeClass( 'it-table-display' );
     $( '.it-table-context-menu' ).addClass( 'it-table-display-none' );
 } );
+$( '#ccm-form-submit-button' ).on( 'click', function () {
+    tableEntry.autoSave();
+});
 
 if ( schema.children().length > 0 ) {
     $( tableSchema.setHandler( schema ) );
