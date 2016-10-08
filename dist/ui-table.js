@@ -33,7 +33,7 @@ exports.default = function () {
    * Display confirm dialog.
    */
   function confirm(e) {
-    windows.confirm(e.message);
+    return window.confirm(e.message);
   }
 
   /**
@@ -49,6 +49,7 @@ exports.default = function () {
 
   return {
     message: message,
+    confirm: confirm,
     close: close
   };
 }();
@@ -224,7 +225,7 @@ exports.default = function () {
      */
     var contextColMenu = '<span class="it-table-context">\n                    <a class="it-table-show-context btn btn-default btn-sm" href="#"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>\n                    <ul class="it-table-context-menu it-table-display-none">\n                        <li class="it-table-add-col"><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Add Col</li>\n                        <li class="it-table-rm-col"><i class="fa fa-minus" aria-hidden="true"></i>&emsp;Del Col</li>\n                        <li class="it-table-convert-col-th"><i class="fa fa-arrow-right" aria-hidden="true"></i>&emsp;TH</li>\n                        <li class="it-table-convert-col-td"><i class="fa fa-arrow-right" aria-hidden="true"></i>&emsp;TD</li>\n                        <li class="it-table-close-context"><i class="fa fa-times" aria-hidden="true"></i>&emsp;Close</li>\n                    </ul>\n                    </span>';
     /**
-     * @property contextRowMenu 
+     * @property contextRowMenu
      * @private
      * @type {String}
      */
@@ -284,7 +285,7 @@ exports.default = function () {
 
     /**
      * Set event handler that handle row and column.
-     * 
+     *
      * @method setHandler
      * @public
      * @param {Object} schema jQuery object that identifies target.
@@ -389,6 +390,13 @@ exports.default = function () {
         if ($('.it-table-row').length < 2) {
             return false;
         }
+        var message = 'This will delete row and any data entered will be permanently lost.\n                             Are you absolutely sure?';
+        var result = alert.confirm({
+            'message': message
+        });
+        if (result === false) {
+            return false;
+        }
         var row = $(this).parents('.it-table-row');
         row.remove();
         decRowsLength();
@@ -488,6 +496,13 @@ exports.default = function () {
      */
     function removeCol(schema) {
         return function () {
+            var message = 'This will delete column and any data entered will be permanently lost.\n                             Are you absolutely sure?';
+            var result = alert.confirm({
+                'message': message
+            });
+            if (result === false) {
+                return false;
+            }
             var rowsLength = $('div', schema).length;
             var colsLength = $('div:first-child span', schema).length;
             if (colsLength <= 2) {
@@ -689,7 +704,7 @@ var btnPreview = $('.it-table-toolbar-preview');
 
 // Make sure one dialog.
 if ($('#it-table-entry-dialog').length < 1) {
-    var editor = '<div id="it-table-entry-dialog" title="Edit data.">\n                        <div class="form-group">\n                            <textarea id="it-table-editor-content" class="form-control"></textarea>\n                        </div>\n                        <div>\n                            <button class="btn btn-default btn-block it-table-entry-save">Save Data</button>\n                        </div>\n                    </div>\n                    <!-- #it-table-entry-dialog -->';
+    var editor = '<div id="it-table-entry-dialog" title="Edit data.">\n                        <div class="form-group">\n                            <textarea id="it-table-editor-content" class="form-control"></textarea>\n                        </div>\n                        <div class="it-table-text-right">\n                            <button class="btn btn-success it-table-entry-save">Save Data</button>\n                        </div>\n                    </div>\n                    <!-- #it-table-entry-dialog -->';
     $(editor).appendTo(table);
 }
 

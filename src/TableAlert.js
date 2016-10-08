@@ -26,7 +26,7 @@ export default (function () {
      * Display confirm dialog.
      */
     function confirm(e) {
-        windows.confirm(e.message);
+        return window.confirm(e.message);
         
     }
 
@@ -43,6 +43,7 @@ export default (function () {
 
     return {
         message: message,
+        confirm: confirm,
         close: close
     }
 }());

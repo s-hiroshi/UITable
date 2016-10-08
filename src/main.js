@@ -18,8 +18,8 @@ if ( $( '#it-table-entry-dialog' ).length < 1 ) {
                         <div class="form-group">
                             <textarea id="it-table-editor-content" class="form-control"></textarea>
                         </div>
-                        <div>
-                            <button class="btn btn-default btn-block it-table-entry-save">Save Data</button>
+                        <div class="it-table-text-right">
+                            <button class="btn btn-success it-table-entry-save">Save Data</button>
                         </div>
                     </div>
                     <!-- #it-table-entry-dialog -->`;

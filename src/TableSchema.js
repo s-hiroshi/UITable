@@ -39,7 +39,7 @@ export default (function () {
                     </ul>
                     </span>`;
     /**
-     * @property contextRowMenu 
+     * @property contextRowMenu
      * @private
      * @type {String}
      */
@@ -102,9 +102,9 @@ export default (function () {
                 $( entryMarkup ).appendTo( row );
             }
         }
-        $( 'input[name="showRowsLength"]' ).prop('disabled', true);
-        $( 'input[name="showColsLength"]' ).prop('disabled', true);
-        
+        $( 'input[name="showRowsLength"]' ).prop( 'disabled', true );
+        $( 'input[name="showColsLength"]' ).prop( 'disabled', true );
+
         setHandler( schema );
 
         return schema;
@@ -112,7 +112,7 @@ export default (function () {
 
     /**
      * Set event handler that handle row and column.
-     * 
+     *
      * @method setHandler
      * @public
      * @param {Object} schema jQuery object that identifies target.
@@ -217,6 +217,14 @@ export default (function () {
         if ( $( '.it-table-row' ).length < 2 ) {
             return false;
         }
+        const message = `This will delete row and any data entered will be permanently lost.
+                             Are you absolutely sure?`;
+        let result = alert.confirm( {
+            'message': message
+        } );
+        if ( result === false ) {
+            return false;
+        }
         const row = $( this ).parents( '.it-table-row' );
         row.remove();
         decRowsLength();
@@ -291,7 +299,7 @@ export default (function () {
                         const addedCol = col.clone( true );
                         $( 'input[name="content[]"]', addedCol ).val( '' );
                         $( 'input[name="th[]"]', addedCol ).val( 'false' );
-                        if ( j > 0 && i !== 0) {
+                        if ( j > 0 && i !== 0 ) {
                             $( 'i', addedCol ).removeClass( 'fa fa-pencil-square' );
                             $( 'i', addedCol ).addClass( 'fa fa-pencil-square-o' );
                         }
@@ -317,6 +325,14 @@ export default (function () {
      */
     function removeCol( schema ) {
         return function () {
+            const message = `This will delete column and any data entered will be permanently lost.
+                             Are you absolutely sure?`;
+            let result = alert.confirm( {
+                'message': message
+            } );
+            if ( result === false ) {
+                return false;
+            }
             const rowsLength = $( 'div', schema ).length;
             const colsLength = $( 'div:first-child span', schema ).length;
             if ( colsLength <= 2 ) {
