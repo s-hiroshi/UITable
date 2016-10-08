@@ -113,7 +113,7 @@ exports.default = function () {
      * @public
      */
     function edit() {
-        $(this).css({ 'background': '#3276b1' });
+        $(this).css({ 'background': '#77bcf4' });
         current = this;
         var content = $('input[name="content[]"]', this);
         $('#it-table-editor-content').val(content.val());
