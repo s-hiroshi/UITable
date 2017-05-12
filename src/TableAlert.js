@@ -2,7 +2,8 @@
  * @module UITable
  */
 /**
- * Handle error, exception, notice
+ * This class define alert.
+ * Alert is error, exception, notice.
  *
  * @class alert
  */

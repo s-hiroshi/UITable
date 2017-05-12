@@ -1,5 +1,8 @@
 /**
- * Handle table schema.
+ * @module UITable
+ */
+/**
+ * This class create table, add row/column, delete row/column.
  *
  * @class schema
  */

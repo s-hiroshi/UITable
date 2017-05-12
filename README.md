@@ -80,6 +80,10 @@ Do unit test.
     $ cd /path/to/project
     $ npm run tests
 
+Build distribution file (dist/ui-image.min.js).
+
+    $ cd /path/to/project
+    $ npm run build
 
 ## LICENSE
 

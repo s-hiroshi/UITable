@@ -9,7 +9,8 @@ Object.defineProperty(exports, "__esModule", {
  * @module UITable
  */
 /**
- * Handle error, exception, notice
+ * This class define alert.
+ * Alert is error, exception, notice.
  *
  * @class alert
  */
@@ -207,7 +208,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 /**
- * Handle table schema.
+ * @module UITable
+ */
+/**
+ * This class create table, add row/column, delete row/column.
  *
  * @class schema
  */

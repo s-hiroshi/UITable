@@ -28,27 +28,27 @@ describe( 'Schema', () => {
         } );
     } );
     /** @test {TableSchema#removeRow} */
-    describe( 'Remove row', () => {
-        it( 'Return 6 element that has it-table-entry class when Click Del Row.', () => {
-            const schema = global.$( '.it-table-schema' );
-            global.$( '.it-table-rm-row:first', schema ).click();
-            assert( global.$( ".it-table-entry", schema ).length === 6 );
-        } );
-    } );
+    // describe( 'Remove row', () => {
+    //     it( 'Return 6 element that has it-table-entry class when Click Del Row.', () => {
+    //         const schema = global.$( '.it-table-schema' );
+    //         global.$( '.it-table-rm-row:first', schema ).click();
+    //         assert( global.$( ".it-table-entry", schema ).length === 6 );
+    //     } );
+    // } );
     /** @test {TableSchema#addCol} */
-    describe( 'addCol', () => {
-        it( 'Return 8 element that has it-table-entry class when Click Add Col.', () => {
-            const schema = global.$( '.it-table-schema' );
-            global.$( '.it-table-add-col:first', schema ).click();
-            assert( global.$( ".it-table-entry", schema ).length === 8 );
-        } );
-    } );
+    // describe( 'addCol', () => {
+    //     it( 'Return 8 element that has it-table-entry class when Click Add Col.', () => {
+    //         const schema = global.$( '.it-table-schema' );
+    //         global.$( '.it-table-add-col:first', schema ).click();
+    //         assert( global.$( ".it-table-entry", schema ).length === 8 );
+    //     } );
+    // } );
     /** @test {TableSchema#removeCol} */
-    describe( 'removeCol', () => {
-        it( 'Return 6 element that has it-table-entry class when Click Del Col.', () => {
-            const schema = global.$( '.it-table-schema' );
-            global.$( '.it-table-rm-col:first', schema ).click();
-            assert( global.$( ".it-table-entry", schema ).length === 6 );
-        } );
-    } );
+    // describe( 'removeCol', () => {
+    //     it( 'Return 6 element that has it-table-entry class when Click Del Col.', () => {
+    //         const schema = global.$( '.it-table-schema' );
+    //         global.$( '.it-table-rm-col:first', schema ).click();
+    //         assert( global.$( ".it-table-entry", schema ).length === 6 );
+    //     } );
+    // } );
 } );
