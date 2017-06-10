@@ -75,11 +75,6 @@ When You click "Preview Table" button, The changes are reflected.
 
 <img src="screenshot-2nd-preview.png">
 
-You click "Save" button (blue button), then the changes will be saved to the database.
-
-"Save"ボタン(青色)をクリックすると変更がデータベースへ保存されます。
-
-
 ### Modify schema(Context Menu)
 
 You click "settings" button, then context menu is shown.
