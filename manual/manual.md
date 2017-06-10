@@ -75,11 +75,6 @@ When You click "Preview Table" button, The changes are reflected.
 
 <img src="screenshot-2nd-preview.png">
 
-You click "Save" button (blue button), then the changes will be saved to the database.
-
-"Save"ボタン(青色)をクリックすると変更がデータベースへ保存されます。
-
-
 ### Modify schema(Context Menu)
 
 You click "settings" button, then context menu is shown.
@@ -97,7 +92,7 @@ You click "settings" button, then context menu is shown.
   列を現在の列の前に挿入します。
 * Del Col  
   Delete current column.  
-  列を現在の列の後に挿入します。
+  現在の列を削除します。
 * TH  
   Convert data type to TH (Table Header).  
   TH (Table Header)へ変更します。
